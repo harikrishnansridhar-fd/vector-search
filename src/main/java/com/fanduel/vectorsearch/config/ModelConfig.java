@@ -1,15 +1,15 @@
-package com.fanduel.vectorsearch;
+package com.fanduel.vectorsearch.config;
 
 import java.util.Map;
 
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.transformers.TransformersEmbeddingModel;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 
 @Configuration
-public class Config {
+public class ModelConfig {
 
 	@Bean
 	public EmbeddingModel embeddingModel() throws Exception {

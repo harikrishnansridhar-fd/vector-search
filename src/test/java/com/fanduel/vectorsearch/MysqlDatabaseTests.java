@@ -3,17 +3,13 @@ package com.fanduel.vectorsearch;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -23,15 +19,15 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.fanduel.vectorsearch.entity.PersonDetailsEntity;
-import com.fanduel.vectorsearch.entity.repository.PersonDetailsRepository;
+import com.fanduel.vectorsearch.primary.entity.PersonDetailsEntity;
+import com.fanduel.vectorsearch.primary.repository.PersonDetailsRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class DatabaseTests {
+public class MysqlDatabaseTests {
 
 	@Autowired
 	private PersonDetailsRepository personDetailsRepository;
