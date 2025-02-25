@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class SearchResult {
+	private Long id;
 	private String address;
 	private Long similarity;
 }

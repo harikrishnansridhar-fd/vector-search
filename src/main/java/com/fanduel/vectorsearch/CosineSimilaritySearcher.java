@@ -1,10 +1,13 @@
 package com.fanduel.vectorsearch;
 
+import java.sql.Time;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
+
+import com.fanduel.vectorsearch.primary.entity.PersonDetailsEntity;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,6 +20,17 @@ public class CosineSimilaritySearcher {
 		float[] queryVector = textEmbedder.embed( query );
 		return addresses.stream().map( address -> SearchResult.builder( ).address( address ).similarity( getCosineProduct( queryVector,
 				textEmbedder.embed( address ) ) ).build() ).collect( Collectors.toList() );
+	}
+
+	public List<SearchResult> cosineSimilarityAddress( String query, Map<Long, PersonDetailsEntity> users) {
+		Time start = Time.valueOf("00:00:00");
+		Time end = Time.valueOf("00:00:00");
+		start.setTime( System.currentTimeMillis() );
+		float[] queryVector = textEmbedder.embed( query );
+		end.setTime( System.currentTimeMillis() );
+		System.out.println("Time took to create embedding for single user: " + (end.getTime() - start.getTime()) + "ms");
+		return users.values().stream().map( user -> SearchResult.builder( ).id( user.getId() ).address( user.getAddress() ).similarity( getCosineProduct( queryVector,
+				textEmbedder.embed( user.getAddress() ) ) ).build() ).collect( Collectors.toList() );
 	}
 
 	private Long getCosineProduct( final float[] v1, final float[] v2 ) {
